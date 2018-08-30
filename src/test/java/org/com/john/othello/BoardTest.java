@@ -106,8 +106,8 @@ public class BoardTest {
 		Board board = new Board(grid);
 		board.playPiece(BoardSpecs.WHITE_COLOR, 0, 1);
 		int[][] expected = {
-				{1, 1, 1, 1, 1, 1, 1, 1},
 				{0, 0, 0, 0, 0, 0, 0, 0},
+				{1, 1, 1, 1, 1, 1, 1, 1},
 				{0, 0, 0, 0, 0, 0, 0, 0},
 				{0, 0, 0, 0, 0, 0, 0, 0},
 				{0, 0, 0, 0, 0, 0, 0, 0},

@@ -3,8 +3,15 @@ package org.com.john.othello;
 import java.util.Arrays;
 
 public class Board {
+	private UserInput input;
+
 	private int grid[][];
 	
+	public Board(int[][] grid, UserInput input) {
+		this.grid = grid;
+		this.input = input;
+	}
+
 	public Board(int[][] grid) {
 		this.grid = grid;
 	}
@@ -20,7 +27,7 @@ public class Board {
 				{0, 0, 0, 0, 0, 0, 0, 0},
 				{0, 0, 0, 0, 0, 0, 0, 0}
 		};
-		return new Board(grid);
+		return new Board(grid, new UserInput());
 	}
 	
 	public void printBoard() {
@@ -29,12 +36,8 @@ public class Board {
 		}	
 	}
 
-	public int[][] getGrid() {
-		return grid;
-	}
-
-	public void setGrid(int[][] grid) {
-		this.grid = grid;
+	public void playPiece(int color, int[] coords) {
+		playPiece(color, coords[0], coords[1]);
 	}
 
 	public void playPiece(int color, int x, int y) {
@@ -62,6 +65,22 @@ public class Board {
 
 	private boolean checkValid(int possiblePieceX, int possiblePieceY) {
 		return (possiblePieceX >= 0 && possiblePieceX <= 7) && (possiblePieceY >= 0 && possiblePieceY <= 7);
+	}
+	
+	public int[][] getGrid() {
+		return grid;
+	}
+	
+	public void setGrid(int[][] grid) {
+		this.grid = grid;
+	}
+
+	public UserInput getInput() {
+		return input;
+	}
+
+	public void setGl(UserInput gl) {
+		this.input = gl;
 	}
 	
 }
