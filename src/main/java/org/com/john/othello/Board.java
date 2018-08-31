@@ -53,7 +53,10 @@ public class Board {
 	}
 
 	private void capture(int color, int x, int y, int changeX, int changeY) {
-		for(int possiblePieceX = x + changeX, possiblePieceY = y + changeY; checkValid(possiblePieceX, possiblePieceY); possiblePieceX += changeX, possiblePieceY += changeY) {
+		for(int possiblePieceX = x + changeX, possiblePieceY = y + changeY; GameLogic.checkValid(possiblePieceX, possiblePieceY); possiblePieceX += changeX, possiblePieceY += changeY) {
+			if(grid[possiblePieceY][possiblePieceX] == BoardSpecs.EMPTY_SQUARE) {
+				break;
+			}
 			if(grid[possiblePieceY][possiblePieceX] == color) {
 				for(int finalPositionX = possiblePieceX, finalPositionY = possiblePieceY; finalPositionX != x || finalPositionY != y; finalPositionX -= changeX, finalPositionY -= changeY) {
 					grid[finalPositionY][finalPositionX] = color;
@@ -63,10 +66,6 @@ public class Board {
 		}
 	}
 
-	private boolean checkValid(int possiblePieceX, int possiblePieceY) {
-		return (possiblePieceX >= 0 && possiblePieceX <= 7) && (possiblePieceY >= 0 && possiblePieceY <= 7);
-	}
-	
 	public int[][] getGrid() {
 		return grid;
 	}

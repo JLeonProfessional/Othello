@@ -294,4 +294,34 @@ public class BoardTest {
 			Assert.assertTrue(Arrays.toString(actual[row]).equals(Arrays.toString(expected[row])));
 		}
 	}
+	
+	public void testCaptureNoBlanks() {
+		int[][] grid = {
+				{0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 2, 0, 0, 0, 0, 0, 0},
+				{1, 0, 0, 0, 2, 0, 0, 0},
+				{0, 0, 0, 0, 0, 2, 0, 0},
+				{0, 0, 0, 0, 0, 0, 2, 0},
+				{0, 0, 0, 0, 0, 0, 0, 1},
+		};
+		Board board = new Board(grid);
+		board.playPiece(BoardSpecs.WHITE_COLOR, 2, 2);
+		int[][] expected = {
+				{0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 1, 0, 0, 0, 0, 0},
+				{0, 1, 0, 0, 0, 0, 0, 0},
+				{1, 0, 0, 0, 2, 0, 0, 0},
+				{0, 0, 0, 0, 0, 2, 0, 0},
+				{0, 0, 0, 0, 0, 0, 2, 0},
+				{0, 0, 0, 0, 0, 0, 0, 1},
+		};
+		int[][] actual = board.getGrid();
+		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
+			Assert.assertTrue(Arrays.toString(actual[row]).equals(Arrays.toString(expected[row])));
+		}
+	}
+	
 }

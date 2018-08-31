@@ -10,8 +10,11 @@ public class UserInput {
 	}
 	
 	public int[] promptUser(Scanner scanner) {
-		System.out.println("Play your piece \"xy\"");
-		String move = scanner.nextLine();
+		String move;
+		do {
+			System.out.println("Play your piece \"xy\"");
+			move = scanner.nextLine();
+		} while(move.length() != 2 || !move.matches("[0-9]+"));
 		int x = Character.getNumericValue(move.charAt(0));
 		int y = Character.getNumericValue(move.charAt(1));
 		int[] coords = {x, y};

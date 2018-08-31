@@ -42,10 +42,84 @@ public class GameLogic {
 			color = BoardSpecs.BLACK_COLOR;
 			whiteTurn = true;
 		}
-		this.board.playPiece(color, board.getInput().promptUser(scanner));
+		int[] input;
+		do {
+			input = board.getInput().promptUser(scanner);
+		} while(!checkValidMove(input, color));
+		this.board.playPiece(color, input);
 		checkGameOver();
 	}
 	
+	private boolean checkValidMove(int[] move, int color) {
+		boolean valid = true;
+		int x = move[0];
+		int y = move[1];
+		valid = checkForCapture(color, x, y);
+		if(valid && x > 7 || x < 0 || y > 7 || y < 0) {
+			valid = false;
+		}
+		if(valid && board.getGrid()[y][x] != BoardSpecs.EMPTY_SQUARE) {
+			valid = false;
+		} 
+		return valid;
+	}
+	
+	private boolean checkForCapture(int color, int x, int y) {
+		boolean valid = false;
+		valid = checkForCapture(color, x, y, -1, 0);  //Left
+		if(!valid) {
+			valid = checkForCapture(color, x, y, 1, 0);   //Right
+		}
+		if(!valid) {
+			valid = checkForCapture(color, x, y, 0, -1);  //Down
+		}
+		if(!valid) {
+			valid = checkForCapture(color, x, y, 0, 1);   //Up
+		}
+		if(!valid) {
+			valid = checkForCapture(color, x, y, -1, -1); //DownLeft
+		}
+		if(!valid) {
+			valid = checkForCapture(color, x, y, 1, -1);  //DownRight
+		}
+		if(!valid) {
+			valid = checkForCapture(color, x, y, -1, 1);  //UpLeft
+		}
+		if(!valid) {
+			valid = checkForCapture(color, x, y, 1, 1);   //UpRight
+		}
+		return valid;
+	}
+
+	private boolean checkForCapture(int color, int x, int y, int changeX, int changeY) {
+		boolean valid = false;
+		boolean opponentColorFound = false;
+		int opponentColor = (color == BoardSpecs.WHITE_COLOR) ? BoardSpecs.BLACK_COLOR : BoardSpecs.WHITE_COLOR;
+		int[][] grid = board.getGrid();
+		for(int possiblePieceX = x + changeX, possiblePieceY = y + changeY; checkValid(possiblePieceX, possiblePieceY); possiblePieceX += changeX, possiblePieceY += changeY) {
+			valid = true;
+			int possiblePiece = grid[possiblePieceY][possiblePieceX];
+			if(possiblePiece == BoardSpecs.EMPTY_SQUARE) {
+				valid = false;
+				break;
+			}
+			if(possiblePiece == opponentColor && !opponentColorFound) {
+				opponentColorFound = true;
+			}
+			if(possiblePiece == color) {
+				if(!opponentColorFound) {
+					valid = false;
+				}
+				break;
+			}
+		}
+		return valid;
+	}
+
+	public static boolean checkValid(int possiblePieceX, int possiblePieceY) {
+		return (possiblePieceX >= 0 && possiblePieceX <= 7) && (possiblePieceY >= 0 && possiblePieceY <= 7);
+	}
+
 	private void checkGameOver() {
 		int[][] grid = board.getGrid();
 		finished = true; // Assume game is over-- will find out if not
