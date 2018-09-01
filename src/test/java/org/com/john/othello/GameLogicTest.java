@@ -1,13 +1,15 @@
 package org.com.john.othello;
 
-import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import junit.framework.Assert;
+import org.com.john.othello.helpers.BoardTestHelper;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class GameLogicTest {
 	
+	@Test
 	public void testFirstTurn() {
 		GameLogic gl = new GameLogic();
 		gl.playTurn(new Scanner("53"));
@@ -22,11 +24,10 @@ public class GameLogicTest {
 				{0, 0, 0, 0, 0, 0, 0, 0}
 		};
 		int[][] actual = gl.getBoard().getGrid();
-		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
-			Assert.assertTrue(Arrays.toString(actual[row]).equals(Arrays.toString(expected[row])));
-		}
+		BoardTestHelper.validateBoard(expected, actual);
 	}
 	
+	@Test
 	public void testSecondTurn() {
 		GameLogic gl = new GameLogic();
 		gl.playTurn(new Scanner("53"));
@@ -42,11 +43,10 @@ public class GameLogicTest {
 				{0, 0, 0, 0, 0, 0, 0, 0}
 		};
 		int[][] actual = gl.getBoard().getGrid();
-		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
-			Assert.assertTrue(Arrays.toString(actual[row]).equals(Arrays.toString(expected[row])));
-		}
+		BoardTestHelper.validateBoard(expected, actual);
 	}
 	
+	@Test
 	public void testGameFinished() {
 		GameLogic gl = new GameLogic();
 		int[][] grid = {
@@ -74,11 +74,10 @@ public class GameLogicTest {
 		};
 		int[][] actual = gl.getBoard().getGrid();
 		Assert.assertTrue(gl.isFinished());
-		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
-			Assert.assertTrue(Arrays.toString(actual[row]).equals(Arrays.toString(expected[row])));
-		}
+		BoardTestHelper.validateBoard(expected, actual);
 	}
 	
+	@Test
 	public void testPlayTurn_Invalid_Occupied() {
 		GameLogic gl = new GameLogic();
 		try {
@@ -97,11 +96,10 @@ public class GameLogicTest {
 				{0, 0, 0, 0, 0, 0, 0, 0}
 		};
 		int[][] actual = gl.getBoard().getGrid();
-		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
-			Assert.assertTrue(Arrays.toString(actual[row]).equals(Arrays.toString(expected[row])));
-		}	
+		BoardTestHelper.validateBoard(expected, actual);
 	}
 	
+	@Test
 	public void testPlayTurn_Invalid_OutOfBoundsX() {
 		GameLogic gl = new GameLogic();
 		try {
@@ -121,11 +119,10 @@ public class GameLogicTest {
 				{0, 0, 0, 0, 0, 0, 0, 0}
 		};
 		int[][] actual = gl.getBoard().getGrid();
-		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
-			Assert.assertTrue(Arrays.toString(actual[row]).equals(Arrays.toString(expected[row])));
-		}	
+		BoardTestHelper.validateBoard(expected, actual);
 	}
 	
+	@Test
 	public void testPlayTurn_Invalid_OutOfBoundsY() {
 		GameLogic gl = new GameLogic();
 		try {
@@ -145,11 +142,10 @@ public class GameLogicTest {
 				{0, 0, 0, 0, 0, 0, 0, 0}
 		};
 		int[][] actual = gl.getBoard().getGrid();
-		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
-			Assert.assertTrue(Arrays.toString(actual[row]).equals(Arrays.toString(expected[row])));
-		}	
+		BoardTestHelper.validateBoard(expected, actual);
 	}
 	
+	@Test
 	public void testPlayTurn_Invalid_NotConnected() {
 		GameLogic gl = new GameLogic();
 		try {
@@ -169,11 +165,10 @@ public class GameLogicTest {
 				{0, 0, 0, 0, 0, 0, 0, 0}
 		};
 		int[][] actual = gl.getBoard().getGrid();
-		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
-			Assert.assertTrue(Arrays.toString(actual[row]).equals(Arrays.toString(expected[row])));
-		}	
+		BoardTestHelper.validateBoard(expected, actual);
 	}
 	
+	@Test
 	public void testPlayTurn_Invalid_NoCapture() {
 		GameLogic gl = new GameLogic();
 		try {
@@ -193,8 +188,8 @@ public class GameLogicTest {
 				{0, 0, 0, 0, 0, 0, 0, 0}
 		};
 		int[][] actual = gl.getBoard().getGrid();
-		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
-			Assert.assertTrue(Arrays.toString(actual[row]).equals(Arrays.toString(expected[row])));
-		}	
+		BoardTestHelper.validateBoard(expected, actual);
 	}
+	
+	
 }
