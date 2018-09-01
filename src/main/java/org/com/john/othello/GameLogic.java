@@ -5,10 +5,19 @@ import java.util.Scanner;
 public class GameLogic {
 	private Board board;
 	
+	private User playerOne;
+	private User playerTwo;
+	
 	private boolean whiteTurn;
 	private boolean finished;
 	
 	public GameLogic() {
+		this(null, null);
+	}
+	
+	public GameLogic(User playerOne, User playerTwo) {
+		this.playerOne = playerOne;
+		this.playerTwo = playerTwo;
 		this.board = Board.getInstance();
 		whiteTurn = true;
 		finished = false;
@@ -153,6 +162,22 @@ public class GameLogic {
 
 	public void setFinished(boolean finished) {
 		this.finished = finished;
+	}
+
+	public User getPlayerOne() {
+		return playerOne;
+	}
+
+	public void setPlayerOne(User playerOne) {
+		this.playerOne = playerOne;
+	}
+
+	public User getPlayerTwo() {
+		return playerTwo;
+	}
+
+	public void setPlayerTwo(User playerTwo) {
+		this.playerTwo = playerTwo;
 	}
 
 
