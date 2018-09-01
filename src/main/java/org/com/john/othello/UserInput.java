@@ -20,4 +20,14 @@ public class UserInput {
 		int[] coords = {x, y};
 		return coords;
 	}
+
+	public String promptUserForName() {
+		return promptUserForName(new Scanner(System.in));
+	}
+	public static String promptUserForName(Scanner scanner) {
+		String name;
+		System.out.println("What is your name?");
+		name = scanner.nextLine();
+		return name;
+	}
 }

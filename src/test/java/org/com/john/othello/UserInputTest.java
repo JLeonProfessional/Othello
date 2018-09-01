@@ -73,4 +73,16 @@ public class UserInputTest {
 		int[][] actual = board.getGrid();
 		BoardTestHelper.validateBoard(expected, actual);
 	}
+	
+	@Test
+	public void testPlayerAskForName_InvalidInput() throws Exception {
+		String name = null;
+		try {
+			name = UserInput.promptUserForName(new Scanner(""));
+			Assert.fail("Should be unreachable");
+		} catch(NoSuchElementException e) {
+			Assert.assertNull(name);
+			// expected
+		}
+	}
 }

@@ -50,6 +50,7 @@ public class User {
 		return rs.next();
 	}
 
+	// TODO UNTESTED
 	private static void insertIntoDatabase(String name) throws SQLException {
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/othello", "jleon", "jleon");
 		String query = " insert into users (userName)"

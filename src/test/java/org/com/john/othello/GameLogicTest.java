@@ -78,6 +78,29 @@ public class GameLogicTest {
 	}
 	
 	@Test
+	public void testGameFinished_HasWinner_PlayerOne() {
+		User userOne = new User(1, "One");
+		User userTwo = new User(2, "Two");
+		GameLogic gl = new GameLogic(userOne, userTwo);
+		int[][] grid = {
+				{0, 1, 1, 1, 1, 1, 1, 1},
+				{1, 1, 1, 1, 1, 1, 1, 1},
+				{1, 1, 1, 2, 1, 1, 1, 1},
+				{1, 1, 1, 2, 1, 1, 1, 1},
+				{1, 1, 1, 2, 1, 1, 1, 1},
+				{1, 1, 1, 1, 1, 1, 1, 1},
+				{1, 0, 2, 2, 2, 2, 1, 2},
+				{1, 1, 1, 1, 1, 1, 1, 1}
+		};
+		gl.getBoard().setGrid(grid);
+		gl.playTurn(new Scanner("16"));
+		gl.playTurn(new Scanner("00"));
+		gl.playGame();
+		Assert.assertEquals("Winner should be player one", gl.getWinner(), userOne);
+		Assert.assertEquals("Winner should be player one", gl.getWinner().getName(), userOne.getName());
+	}
+	
+	@Test
 	public void testPlayTurn_Invalid_Occupied() {
 		GameLogic gl = new GameLogic();
 		try {
@@ -197,8 +220,8 @@ public class GameLogicTest {
 		User userTwo = new User(2, "Two");
 		GameLogic gl = new GameLogic(userOne, userTwo);
 		
-		Assert.assertTrue(gl.getPlayerOne().getID() == userOne.getID() && gl.getPlayerOne().getName().equals(userOne.getName()));
-		Assert.assertTrue(gl.getPlayerTwo().getID() == userTwo.getID() && gl.getPlayerTwo().getName().equals(userTwo.getName()));
+		Assert.assertEquals(gl.getPlayerOne(), userOne);
+		Assert.assertEquals(gl.getPlayerTwo(), userTwo);
 	}
 	
 	

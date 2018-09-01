@@ -7,6 +7,7 @@ public class GameLogic {
 	
 	private User playerOne;
 	private User playerTwo;
+	private User winner;
 	
 	private boolean whiteTurn;
 	private boolean finished;
@@ -24,11 +25,32 @@ public class GameLogic {
 	}
 	
 	public void playGame() {
-		Scanner scanner = new Scanner(System.in);
 		while(!finished) {
 			playTurn();
 		}
-		scanner.close();
+		winner = findWinner();
+		System.out.println(winner.getName() + " is the winner!");
+	}
+
+	private User findWinner() {
+		int whiteNumber = 0;
+		int blackNumber = 0;
+		User winner = null;
+		for(int row = 0; row < 8; row++) {
+			for(int column = 0; column < 8; column++) {
+				if(board.getGrid()[row][column] == BoardSpecs.WHITE_COLOR) {
+					whiteNumber++;
+				} else {
+					blackNumber++;
+				}
+			}
+		}
+		if(whiteNumber > blackNumber) {
+			winner = playerOne;
+		} else {
+			winner = playerTwo;
+		}
+		return winner;
 	}
 	
 	public void playTurn() {
@@ -178,6 +200,14 @@ public class GameLogic {
 
 	public void setPlayerTwo(User playerTwo) {
 		this.playerTwo = playerTwo;
+	}
+
+	public User getWinner() {
+		return winner;
+	}
+
+	public void setWinner(User winner) {
+		this.winner = winner;
 	}
 
 
