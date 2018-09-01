@@ -1,11 +1,12 @@
 package org.com.john.othello;
 
-import java.util.Arrays;
-
-import junit.framework.Assert;
+import org.com.john.othello.helpers.BoardTestHelper;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class BoardTest {
-	
+
+	@Test
 	public void testDefaultBoard() {
 		Board board = Board.getInstance();
 		Assert.assertNotNull(board);
@@ -20,11 +21,10 @@ public class BoardTest {
 				{0, 0, 0, 0, 0, 0, 0, 0}
 		};
 		int[][] actual = board.getGrid();
-		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
-			Assert.assertTrue(Arrays.toString(actual[row]).equals(Arrays.toString(expected[row])));
-		}
+		BoardTestHelper.validateBoard(expected, actual);
 	}
-	
+
+	@Test
 	public void testWhitePiecePlayed() {
 		Board board = Board.getInstance();
 		board.playPiece(BoardSpecs.WHITE_COLOR, 5, 3);
@@ -39,11 +39,10 @@ public class BoardTest {
 				{0, 0, 0, 0, 0, 0, 0, 0}
 		};
 		int[][] actual = board.getGrid();
-		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
-			Assert.assertTrue(Arrays.toString(actual[row]).equals(Arrays.toString(expected[row])));
-		}
+		BoardTestHelper.validateBoard(expected, actual);
 	}
 
+	@Test
 	public void testBlackPiecePlayed() {
 		Board board = Board.getInstance();
 		board.playPiece(BoardSpecs.BLACK_COLOR, 5, 4);
@@ -58,11 +57,10 @@ public class BoardTest {
 				{0, 0, 0, 0, 0, 0, 0, 0}
 		};
 		int[][] actual = board.getGrid();
-		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
-			Assert.assertTrue(Arrays.toString(actual[row]).equals(Arrays.toString(expected[row])));
-		}
+		BoardTestHelper.validateBoard(expected, actual);
 	}
-	
+
+	@Test
 	public void testCaptureLeft() {
 		int[][] grid = {
 				{1, 2, 2, 2, 2, 2, 2, 0},
@@ -87,11 +85,10 @@ public class BoardTest {
 				{0, 0, 0, 0, 0, 0, 0, 0}
 		};
 		int[][] actual = board.getGrid();
-		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
-			Assert.assertTrue(Arrays.toString(actual[row]).equals(Arrays.toString(expected[row])));
-		}
+		BoardTestHelper.validateBoard(expected, actual);
 	}
-	
+
+	@Test
 	public void testCaptureRight() {
 		int[][] grid = {
 				{0, 0, 0, 0, 0, 0, 0, 0},
@@ -116,11 +113,10 @@ public class BoardTest {
 				{0, 0, 0, 0, 0, 0, 0, 0}
 		};
 		int[][] actual = board.getGrid();
-		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
-			Assert.assertTrue(Arrays.toString(actual[row]).equals(Arrays.toString(expected[row])));
-		}
+		BoardTestHelper.validateBoard(expected, actual);
 	}
-	
+
+	@Test
 	public void testCaptureDown() {
 		int[][] grid = {
 				{1, 0, 0, 0, 0, 0, 0, 0},
@@ -145,11 +141,10 @@ public class BoardTest {
 				{1, 0, 0, 0, 0, 0, 0, 0}
 		};
 		int[][] actual = board.getGrid();
-		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
-			Assert.assertTrue(Arrays.toString(actual[row]).equals(Arrays.toString(expected[row])));
-		}
+		BoardTestHelper.validateBoard(expected, actual);
 	}
-	
+
+	@Test
 	public void testCaptureUp() {
 		int[][] grid = {
 				{0, 0, 0, 0, 0, 0, 0, 0},
@@ -174,11 +169,10 @@ public class BoardTest {
 				{1, 0, 0, 0, 0, 0, 0, 0}
 		};
 		int[][] actual = board.getGrid();
-		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
-			Assert.assertTrue(Arrays.toString(actual[row]).equals(Arrays.toString(expected[row])));
-		}
+		BoardTestHelper.validateBoard(expected, actual);
 	}
-	
+
+	@Test
 	public void testCaptureUpRight() {
 		int[][] grid = {
 				{0, 0, 0, 0, 0, 0, 0, 1},
@@ -203,11 +197,10 @@ public class BoardTest {
 				{1, 0, 0, 0, 0, 0, 0, 0}
 		};
 		int[][] actual = board.getGrid();
-		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
-			Assert.assertTrue(Arrays.toString(actual[row]).equals(Arrays.toString(expected[row])));
-		}
+		BoardTestHelper.validateBoard(expected, actual);
 	}
-	
+
+	@Test
 	public void testCaptureDownLeft() {
 		int[][] grid = {
 				{0, 0, 0, 0, 0, 0, 0, 0},
@@ -232,11 +225,10 @@ public class BoardTest {
 				{1, 0, 0, 0, 0, 0, 0, 0}
 		};
 		int[][] actual = board.getGrid();
-		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
-			Assert.assertTrue(Arrays.toString(actual[row]).equals(Arrays.toString(expected[row])));
-		}
+		BoardTestHelper.validateBoard(expected, actual);
 	}
-	
+
+	@Test
 	public void testCaptureUpLeft() {
 		int[][] grid = {
 				{1, 0, 0, 0, 0, 0, 0, 0},
@@ -261,11 +253,10 @@ public class BoardTest {
 				{0, 0, 0, 0, 0, 0, 0, 1},
 		};
 		int[][] actual = board.getGrid();
-		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
-			Assert.assertTrue(Arrays.toString(actual[row]).equals(Arrays.toString(expected[row])));
-		}
+		BoardTestHelper.validateBoard(expected, actual);
 	}
-	
+
+	@Test
 	public void testCaptureDownRight() {
 		int[][] grid = {
 				{0, 0, 0, 0, 0, 0, 0, 0},
@@ -290,11 +281,10 @@ public class BoardTest {
 				{0, 0, 0, 0, 0, 0, 0, 1},
 		};
 		int[][] actual = board.getGrid();
-		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
-			Assert.assertTrue(Arrays.toString(actual[row]).equals(Arrays.toString(expected[row])));
-		}
+		BoardTestHelper.validateBoard(expected, actual);
 	}
-	
+
+	@Test
 	public void testCaptureNoBlanks() {
 		int[][] grid = {
 				{0, 0, 0, 0, 0, 0, 0, 0},
@@ -319,9 +309,34 @@ public class BoardTest {
 				{0, 0, 0, 0, 0, 0, 0, 1},
 		};
 		int[][] actual = board.getGrid();
-		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
-			Assert.assertTrue(Arrays.toString(actual[row]).equals(Arrays.toString(expected[row])));
-		}
+		BoardTestHelper.validateBoard(expected, actual);
 	}
-	
+
+	@Test
+	public void testPlayersAdded() {
+		int[][] grid = {
+				{0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 2, 0, 0, 0, 0, 0, 0},
+				{1, 0, 0, 0, 2, 0, 0, 0},
+				{0, 0, 0, 0, 0, 2, 0, 0},
+				{0, 0, 0, 0, 0, 0, 2, 0},
+				{0, 0, 0, 0, 0, 0, 0, 1},
+		};
+		Board board = new Board(grid);
+		board.playPiece(BoardSpecs.WHITE_COLOR, 2, 2);
+		int[][] expected = {
+				{0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 0, 1, 0, 0, 0, 0, 0},
+				{0, 1, 0, 0, 0, 0, 0, 0},
+				{1, 0, 0, 0, 2, 0, 0, 0},
+				{0, 0, 0, 0, 0, 2, 0, 0},
+				{0, 0, 0, 0, 0, 0, 2, 0},
+				{0, 0, 0, 0, 0, 0, 0, 1},
+		};
+		int[][] actual = board.getGrid();
+		BoardTestHelper.validateBoard(expected, actual);
+	}
 }

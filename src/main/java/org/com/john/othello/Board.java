@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Board {
 	private UserInput input;
-
+	
 	private int grid[][];
 	
 	public Board(int[][] grid, UserInput input) {

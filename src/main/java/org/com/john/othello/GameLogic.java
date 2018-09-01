@@ -1,6 +1,5 @@
 package org.com.john.othello;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class GameLogic {
