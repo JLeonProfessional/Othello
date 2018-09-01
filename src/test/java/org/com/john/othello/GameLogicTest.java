@@ -191,5 +191,15 @@ public class GameLogicTest {
 		BoardTestHelper.validateBoard(expected, actual);
 	}
 	
+	@Test
+	public void testUsersAddedCorrectly() {
+		User userOne = new User(1, "One");
+		User userTwo = new User(2, "Two");
+		GameLogic gl = new GameLogic(userOne, userTwo);
+		
+		Assert.assertTrue(gl.getPlayerOne().getID() == userOne.getID() && gl.getPlayerOne().getName().equals(userOne.getName()));
+		Assert.assertTrue(gl.getPlayerTwo().getID() == userTwo.getID() && gl.getPlayerTwo().getName().equals(userTwo.getName()));
+	}
+	
 	
 }
