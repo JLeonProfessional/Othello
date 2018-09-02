@@ -1,6 +1,9 @@
 package org.com.john.othello;
 
 import java.net.Socket;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -41,6 +44,15 @@ public class GameLogic {
 			playTurn();
 		}
 		winner = findWinner();
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/othello", "jleon", "jleon");
+		String query = "UPDATE users SET users.wins = ?"  
+				+ " WHERE users.userName = ?";
+
+		PreparedStatement preparedStmt = conn.prepareStatement(query);
+		preparedStmt.setInt(1, winner.getWins() + 1);
+		preparedStmt.setString(2, winner.getName());
+		preparedStmt.execute();
+		conn.close();
 		System.out.println(winner.getName() + " is the winner!");
 	}
 

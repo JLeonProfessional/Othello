@@ -20,6 +20,17 @@ public class Server {
 		User playerOne = User.lookupUserByName(playerOneName);
 		User playerTwo = User.lookupUserByName(playerTwoName);
 		GameLogic gl = new GameLogic(playerOne, playerTwo, socketList);
+		int[][] grid = {
+				{0, 1, 1, 1, 1, 1, 1, 1},
+				{1, 1, 1, 1, 1, 1, 1, 1},
+				{1, 1, 1, 2, 1, 1, 1, 1},
+				{1, 1, 1, 2, 1, 1, 1, 1},
+				{1, 1, 1, 2, 1, 1, 1, 1},
+				{1, 1, 1, 1, 1, 1, 1, 1},
+				{1, 0, 2, 2, 2, 2, 1, 2},
+				{1, 1, 1, 1, 1, 1, 1, 1}
+		};
+		gl.getBoard().setGrid(grid);
 		gl.playGame();
 		listener.close();
 	}
