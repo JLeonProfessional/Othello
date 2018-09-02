@@ -1,5 +1,7 @@
 package org.com.john.othello;
 
+import java.io.IOException;
+import java.net.Socket;
 import java.util.Arrays;
 
 public class Board {
@@ -30,7 +32,21 @@ public class Board {
 		return new Board(grid, new UserInput());
 	}
 	
-	public void printBoard() {
+	public void printBoard() throws IOException {
+		this.printBoard(null);
+	}
+	
+	public void printBoard(Socket socket) throws IOException {
+		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
+			String rowArray = Arrays.toString(grid[row]);
+			System.out.println(rowArray);
+			if(socket != null) {
+				UserInput.sendInformationToServer(socket, rowArray);
+			}
+		}	
+	}
+	
+	public static void displayBoard(int[][] grid) {
 		for(int row = 0; row < BoardSpecs.NUMBER_OF_ROWS; row++) {
 			System.out.println(Arrays.toString(grid[row]));
 		}	

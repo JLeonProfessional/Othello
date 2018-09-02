@@ -10,7 +10,7 @@ import org.junit.Test;
 public class GameLogicTest {
 	
 	@Test
-	public void testFirstTurn() {
+	public void testFirstTurn() throws Exception {
 		GameLogic gl = new GameLogic();
 		gl.playTurn(new Scanner("53"));
 		int[][] expected = {
@@ -28,7 +28,7 @@ public class GameLogicTest {
 	}
 	
 	@Test
-	public void testSecondTurn() {
+	public void testSecondTurn() throws Exception {
 		GameLogic gl = new GameLogic();
 		gl.playTurn(new Scanner("53"));
 		gl.playTurn(new Scanner("32"));
@@ -47,7 +47,7 @@ public class GameLogicTest {
 	}
 	
 	@Test
-	public void testGameFinished() {
+	public void testGameFinished() throws Exception {
 		GameLogic gl = new GameLogic();
 		int[][] grid = {
 				{0, 1, 1, 1, 1, 1, 1, 1},
@@ -78,7 +78,7 @@ public class GameLogicTest {
 	}
 	
 	@Test
-	public void testGameFinished_HasWinner_PlayerOne() {
+	public void testGameFinished_HasWinner_PlayerOne() throws Exception {
 		User userOne = new User(1, "One");
 		User userTwo = new User(2, "Two");
 		GameLogic gl = new GameLogic(userOne, userTwo);
@@ -101,7 +101,7 @@ public class GameLogicTest {
 	}
 	
 	@Test
-	public void testPlayTurn_Invalid_Occupied() {
+	public void testPlayTurn_Invalid_Occupied() throws Exception {
 		GameLogic gl = new GameLogic();
 		try {
 			gl.playTurn(new Scanner("43"));
@@ -123,7 +123,7 @@ public class GameLogicTest {
 	}
 	
 	@Test
-	public void testPlayTurn_Invalid_OutOfBoundsX() {
+	public void testPlayTurn_Invalid_OutOfBoundsX() throws Exception {
 		GameLogic gl = new GameLogic();
 		try {
 			gl.playTurn(new Scanner("85"));
@@ -146,7 +146,7 @@ public class GameLogicTest {
 	}
 	
 	@Test
-	public void testPlayTurn_Invalid_OutOfBoundsY() {
+	public void testPlayTurn_Invalid_OutOfBoundsY() throws Exception {
 		GameLogic gl = new GameLogic();
 		try {
 			gl.playTurn(new Scanner("58"));
@@ -169,7 +169,7 @@ public class GameLogicTest {
 	}
 	
 	@Test
-	public void testPlayTurn_Invalid_NotConnected() {
+	public void testPlayTurn_Invalid_NotConnected() throws Exception {
 		GameLogic gl = new GameLogic();
 		try {
 			gl.playTurn(new Scanner("00"));
@@ -192,7 +192,7 @@ public class GameLogicTest {
 	}
 	
 	@Test
-	public void testPlayTurn_Invalid_NoCapture() {
+	public void testPlayTurn_Invalid_NoCapture() throws Exception {
 		GameLogic gl = new GameLogic();
 		try {
 			gl.playTurn(new Scanner("23"));

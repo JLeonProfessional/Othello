@@ -1,8 +1,13 @@
 package org.com.john.othello;
 
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class GameLogic {
+	public static final String YOUR_TURN = "It is your turn.";
+
 	private Board board;
 	
 	private User playerOne;
@@ -11,20 +16,27 @@ public class GameLogic {
 	
 	private boolean whiteTurn;
 	private boolean finished;
+
+	private ArrayList<Socket> socketList;
 	
 	public GameLogic() {
 		this(null, null);
 	}
 	
 	public GameLogic(User playerOne, User playerTwo) {
+		this(playerOne, playerTwo, null);
+	}
+	
+	public GameLogic(User playerOne, User playerTwo, ArrayList<Socket> socketList) {
 		this.playerOne = playerOne;
 		this.playerTwo = playerTwo;
+		this.socketList = socketList;
 		this.board = Board.getInstance();
 		whiteTurn = true;
 		finished = false;
 	}
-	
-	public void playGame() {
+
+	public void playGame() throws Exception {
 		while(!finished) {
 			playTurn();
 		}
@@ -53,18 +65,29 @@ public class GameLogic {
 		return winner;
 	}
 	
-	public void playTurn() {
+	public void playTurn() throws Exception {
 		playTurn(new Scanner(System.in));
+		String text = "";
 		for(int row = 0; row < 8; row++) {
 			for(int column = 0; column < 8; column++) {
-				System.out.print(board.getGrid()[row][column] + ", ");
+				text += board.getGrid()[row][column] + ", ";
 			}
-			System.out.print("\n");
+			text += "\n";
+		}
+		text += "--------------------------";
+		System.out.println(text);
+		if(!socketList.isEmpty()) {
+			Iterator<Socket> iterator = socketList.iterator();
+			while(iterator.hasNext()) {
+				Socket currentSocket = iterator.next();
+				UserInput.sendInformationToClient(currentSocket, text);
+			}
 		}
 	}
 	
-	public void playTurn(Scanner scanner) {
+	public void playTurn(Scanner scanner) throws Exception {
 		int color;
+		int currentPlayer = whiteTurn ? 0 : 1;
 		if(whiteTurn) {
 			color = BoardSpecs.WHITE_COLOR;
 			whiteTurn = false;
@@ -72,11 +95,22 @@ public class GameLogic {
 			color = BoardSpecs.BLACK_COLOR;
 			whiteTurn = true;
 		}
-		int[] input;
+		String input = null;
+		int[] coords;
+		Socket socket = null;
 		do {
-			input = board.getInput().promptUser(scanner);
-		} while(!checkValidMove(input, color));
-		this.board.playPiece(color, input);
+			if(socketList != null) {
+				socket = socketList.get(currentPlayer);
+			}
+			if(socket != null) {
+				UserInput.sendInformationToClient(socket, YOUR_TURN);
+				input = UserInput.recieveInformationFromClient(socket);
+			}
+			int x = Character.getNumericValue(input.charAt(0));
+			int y = Character.getNumericValue(input.charAt(1));
+			coords = new int[] {x, y};
+		} while(!checkValidMove(coords, color));
+		this.board.playPiece(color, coords);
 		checkGameOver();
 	}
 	
