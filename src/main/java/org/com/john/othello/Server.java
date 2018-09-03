@@ -13,24 +13,18 @@ public class Server {
 		Socket playerTwoSocket = listener.accept();
 		String playerTwoName = UserInput.recieveInformationFromClient(playerTwoSocket);
 
+		User playerOne = User.lookupUserByName(playerOneName);
+		User playerTwo = User.lookupUserByName(playerTwoName);
+		
 		System.out.println(playerOneName + " vs " + playerTwoName);
 		ArrayList<Socket> socketList = new ArrayList<Socket>();
 		socketList.add(playerOneSocket);
 		socketList.add(playerTwoSocket);
-		User playerOne = User.lookupUserByName(playerOneName);
-		User playerTwo = User.lookupUserByName(playerTwoName);
 		GameLogic gl = new GameLogic(playerOne, playerTwo, socketList);
-		int[][] grid = {
-				{0, 1, 1, 1, 1, 1, 1, 1},
-				{1, 1, 1, 1, 1, 1, 1, 1},
-				{1, 1, 1, 2, 1, 1, 1, 1},
-				{1, 1, 1, 2, 1, 1, 1, 1},
-				{1, 1, 1, 2, 1, 1, 1, 1},
-				{1, 1, 1, 1, 1, 1, 1, 1},
-				{1, 0, 2, 2, 2, 2, 1, 2},
-				{1, 1, 1, 1, 1, 1, 1, 1}
-		};
-		gl.getBoard().setGrid(grid);
+		String startingBoard = GameLogic.createGridString(gl.getBoard().getGrid());
+		for(Socket currentSocket: socketList) {
+			UserInput.sendInformationToClient(currentSocket, startingBoard);
+		}
 		gl.playGame();
 		listener.close();
 	}

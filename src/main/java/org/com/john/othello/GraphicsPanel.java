@@ -20,14 +20,25 @@ class GraphicsPanel extends JPanel {
     
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        try {
-        	drawGrid(g);
-        	drawPieceFromGrid(g, grid);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//        super.paintComponent(g);
+//        try {
+//        	drawGrid(g);
+//        	drawPieceFromGrid(g, grid);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+    }
+    
+    public void paintComponent(int[][] grid) {
+    	Graphics g = getGraphics();
+    	super.paintComponent(g);
+    	try {
+    		drawGrid(g);
+    		drawPieceFromGrid(g, grid);
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	}
     }
     
     protected static void drawGrid(Graphics g) throws IOException {
@@ -39,7 +50,7 @@ class GraphicsPanel extends JPanel {
     	for(int row = 0; row < 8; row++) {
     		for(int column = 0; column < 8; column++) {
     			if(grid[row][column] != BoardSpecs.EMPTY_SQUARE) {
-    				drawPiece(g, grid[row][column], 5 + (row * NEXT_SQUARE_LENGTH), 5 + (column * NEXT_SQUARE_LENGTH));
+    				drawPiece(g, grid[row][column], 5 + (column * NEXT_SQUARE_LENGTH), 5 + (row * NEXT_SQUARE_LENGTH));
     			}
     		}
     	}

@@ -8,21 +8,21 @@ public class Client {
 	public static void main(String[] args) throws Exception {
 		try {
 			Socket socket = new Socket(BoardSpecs.IP, BoardSpecs.PORT_NUMBER);
-			Thread receiverThread = new Thread(new ReceiverThread(socket));
+			int[][] grid = {
+					{0, 0, 0, 0, 0, 0, 0, 0},
+					{0, 0, 0, 0, 0, 0, 0, 0},
+					{0, 0, 0, 0, 0, 0, 0, 0},
+					{0, 0, 0, 1, 2, 0, 0, 0},
+					{0, 0, 0, 2, 1, 0, 0, 0},
+					{0, 0, 0, 0, 0, 0, 0, 0},
+					{0, 0, 0, 0, 0, 0, 0, 0},
+					{0, 0, 0, 0, 0, 0, 0, 0}
+			};
+			OthelloBoard clientWindow = new OthelloBoard("Othello", grid, socket);
+			Thread receiverThread = new Thread(new ReceiverThread(socket, grid, clientWindow));
 			String name = UserInput.promptUserForName(new Scanner(System.in));
 			UserInput.sendInformationToServer(socket, name);
 			receiverThread.start();
-			int[][] grid = {
-					{0, 1, 1, 1, 1, 1, 1, 1},
-					{1, 1, 1, 1, 1, 1, 1, 1},
-					{1, 1, 1, 2, 1, 1, 1, 1},
-					{1, 1, 1, 2, 1, 1, 1, 1},
-					{1, 1, 1, 2, 1, 1, 1, 1},
-					{1, 1, 1, 1, 1, 1, 1, 1},
-					{1, 0, 2, 2, 2, 2, 1, 2},
-					{1, 1, 1, 1, 1, 1, 1, 1}
-			};
-			new OthelloBoard("Othello", grid);
 		} catch(SocketException e) {
 			e.printStackTrace();
 			System.out.println("Connection to server lost");

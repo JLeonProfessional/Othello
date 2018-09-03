@@ -14,7 +14,6 @@ public class UserInputThread implements Runnable{
 		this.scanner = scanner;
 	}
 
-	@Override
 	public void run() {
 		String name = UserInput.promptUserForName(scanner);
 		System.out.println(name);

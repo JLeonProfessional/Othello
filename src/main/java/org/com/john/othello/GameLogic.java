@@ -79,14 +79,7 @@ public class GameLogic {
 	
 	public void playTurn() throws Exception {
 		playTurn(new Scanner(System.in));
-		String text = "";
-		for(int row = 0; row < 8; row++) {
-			for(int column = 0; column < 8; column++) {
-				text += board.getGrid()[row][column] + ", ";
-			}
-			text += "\n";
-		}
-		text += "--------------------------";
+		String text = createGridString(board.getGrid());
 		System.out.println(text);
 		if(!socketList.isEmpty()) {
 			Iterator<Socket> iterator = socketList.iterator();
@@ -95,6 +88,16 @@ public class GameLogic {
 				UserInput.sendInformationToClient(currentSocket, text);
 			}
 		}
+	}
+
+	public static String createGridString(int[][] grid) {
+		String text = "";
+		for(int row = 0; row < 8; row++) {
+			for(int column = 0; column < 8; column++) {
+				text += grid[row][column];
+			}
+		}
+		return text;
 	}
 	
 	public void playTurn(Scanner scanner) throws Exception {
@@ -118,9 +121,13 @@ public class GameLogic {
 				UserInput.sendInformationToClient(socket, YOUR_TURN);
 				input = UserInput.recieveInformationFromClient(socket);
 			}
-			int x = Character.getNumericValue(input.charAt(0));
-			int y = Character.getNumericValue(input.charAt(1));
-			coords = new int[] {x, y};
+			if(input.length() >= 2) {
+				int x = Character.getNumericValue(input.charAt(0));
+				int y = Character.getNumericValue(input.charAt(1));
+				coords = new int[] {x, y};
+			} else {
+				coords = new int[] {10, 10};
+			}
 		} while(!checkValidMove(coords, color));
 		this.board.playPiece(color, coords);
 		checkGameOver();

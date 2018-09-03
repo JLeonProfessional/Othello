@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 Built-By: Jerome
 Build-Jdk: 9.0.1
+Main-Class: org.com.john.othello.Client
 Created-By: Maven Integration for Eclipse
 

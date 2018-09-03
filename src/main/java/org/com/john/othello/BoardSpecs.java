@@ -6,7 +6,7 @@ public class BoardSpecs {
 	public static final int WHITE_COLOR = 1;
 	public static final int BLACK_COLOR = 2;
 	
-	public static final String IP = "localhost";
+	public static final String IP = "11.0.0.25";
 	public static final int PORT_NUMBER = 9090;
 	
 
