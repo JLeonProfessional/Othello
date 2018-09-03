@@ -12,6 +12,17 @@ public class Client {
 			String name = UserInput.promptUserForName(new Scanner(System.in));
 			UserInput.sendInformationToServer(socket, name);
 			receiverThread.start();
+			int[][] grid = {
+					{0, 1, 1, 1, 1, 1, 1, 1},
+					{1, 1, 1, 1, 1, 1, 1, 1},
+					{1, 1, 1, 2, 1, 1, 1, 1},
+					{1, 1, 1, 2, 1, 1, 1, 1},
+					{1, 1, 1, 2, 1, 1, 1, 1},
+					{1, 1, 1, 1, 1, 1, 1, 1},
+					{1, 0, 2, 2, 2, 2, 1, 2},
+					{1, 1, 1, 1, 1, 1, 1, 1}
+			};
+			new OthelloBoard("Othello", grid);
 		} catch(SocketException e) {
 			e.printStackTrace();
 			System.out.println("Connection to server lost");
