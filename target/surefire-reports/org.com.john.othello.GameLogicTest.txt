@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 Test set: org.com.john.othello.GameLogicTest
 -------------------------------------------------------------------------------
-Tests run: 10, Failures: 0, Errors: 9, Skipped: 0, Time elapsed: 0.008 sec <<< FAILURE!
-testPlayTurn_Invalid_OutOfBoundsX(org.com.john.othello.GameLogicTest)  Time elapsed: 0.003 sec  <<< ERROR!
+Tests run: 10, Failures: 0, Errors: 9, Skipped: 0, Time elapsed: 0.003 sec <<< FAILURE!
+testPlayTurn_Invalid_OutOfBoundsX(org.com.john.othello.GameLogicTest)  Time elapsed: 0.001 sec  <<< ERROR!
 java.lang.NullPointerException
-	at org.com.john.othello.GameLogic.playTurn(GameLogic.java:109)
+	at org.com.john.othello.GameLogic.playTurn(GameLogic.java:121)
 	at org.com.john.othello.GameLogicTest.testPlayTurn_Invalid_OutOfBoundsX(GameLogicTest.java:129)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -38,7 +38,7 @@ java.lang.NullPointerException
 
 testPlayTurn_Invalid_OutOfBoundsY(org.com.john.othello.GameLogicTest)  Time elapsed: 0 sec  <<< ERROR!
 java.lang.NullPointerException
-	at org.com.john.othello.GameLogic.playTurn(GameLogic.java:109)
+	at org.com.john.othello.GameLogic.playTurn(GameLogic.java:121)
 	at org.com.john.othello.GameLogicTest.testPlayTurn_Invalid_OutOfBoundsY(GameLogicTest.java:152)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -70,9 +70,9 @@ java.lang.NullPointerException
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-testPlayTurn_Invalid_NotConnected(org.com.john.othello.GameLogicTest)  Time elapsed: 0 sec  <<< ERROR!
+testPlayTurn_Invalid_NotConnected(org.com.john.othello.GameLogicTest)  Time elapsed: 0.001 sec  <<< ERROR!
 java.lang.NullPointerException
-	at org.com.john.othello.GameLogic.playTurn(GameLogic.java:109)
+	at org.com.john.othello.GameLogic.playTurn(GameLogic.java:121)
 	at org.com.john.othello.GameLogicTest.testPlayTurn_Invalid_NotConnected(GameLogicTest.java:175)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -106,7 +106,7 @@ java.lang.NullPointerException
 
 testSecondTurn(org.com.john.othello.GameLogicTest)  Time elapsed: 0 sec  <<< ERROR!
 java.lang.NullPointerException
-	at org.com.john.othello.GameLogic.playTurn(GameLogic.java:109)
+	at org.com.john.othello.GameLogic.playTurn(GameLogic.java:121)
 	at org.com.john.othello.GameLogicTest.testSecondTurn(GameLogicTest.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -138,9 +138,9 @@ java.lang.NullPointerException
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-testPlayTurn_Invalid_Occupied(org.com.john.othello.GameLogicTest)  Time elapsed: 0.001 sec  <<< ERROR!
+testPlayTurn_Invalid_Occupied(org.com.john.othello.GameLogicTest)  Time elapsed: 0 sec  <<< ERROR!
 java.lang.NullPointerException
-	at org.com.john.othello.GameLogic.playTurn(GameLogic.java:109)
+	at org.com.john.othello.GameLogic.playTurn(GameLogic.java:121)
 	at org.com.john.othello.GameLogicTest.testPlayTurn_Invalid_Occupied(GameLogicTest.java:107)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -174,7 +174,7 @@ java.lang.NullPointerException
 
 testGameFinished(org.com.john.othello.GameLogicTest)  Time elapsed: 0 sec  <<< ERROR!
 java.lang.NullPointerException
-	at org.com.john.othello.GameLogic.playTurn(GameLogic.java:109)
+	at org.com.john.othello.GameLogic.playTurn(GameLogic.java:121)
 	at org.com.john.othello.GameLogicTest.testGameFinished(GameLogicTest.java:63)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -206,9 +206,9 @@ java.lang.NullPointerException
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-testFirstTurn(org.com.john.othello.GameLogicTest)  Time elapsed: 0.001 sec  <<< ERROR!
+testFirstTurn(org.com.john.othello.GameLogicTest)  Time elapsed: 0 sec  <<< ERROR!
 java.lang.NullPointerException
-	at org.com.john.othello.GameLogic.playTurn(GameLogic.java:109)
+	at org.com.john.othello.GameLogic.playTurn(GameLogic.java:121)
 	at org.com.john.othello.GameLogicTest.testFirstTurn(GameLogicTest.java:15)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -242,7 +242,7 @@ java.lang.NullPointerException
 
 testPlayTurn_Invalid_NoCapture(org.com.john.othello.GameLogicTest)  Time elapsed: 0 sec  <<< ERROR!
 java.lang.NullPointerException
-	at org.com.john.othello.GameLogic.playTurn(GameLogic.java:109)
+	at org.com.john.othello.GameLogic.playTurn(GameLogic.java:121)
 	at org.com.john.othello.GameLogicTest.testPlayTurn_Invalid_NoCapture(GameLogicTest.java:198)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -276,7 +276,7 @@ java.lang.NullPointerException
 
 testGameFinished_HasWinner_PlayerOne(org.com.john.othello.GameLogicTest)  Time elapsed: 0.001 sec  <<< ERROR!
 java.lang.NullPointerException
-	at org.com.john.othello.GameLogic.playTurn(GameLogic.java:109)
+	at org.com.john.othello.GameLogic.playTurn(GameLogic.java:121)
 	at org.com.john.othello.GameLogicTest.testGameFinished_HasWinner_PlayerOne(GameLogicTest.java:96)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
